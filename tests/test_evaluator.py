@@ -30,6 +30,7 @@ def test_precedencia_con_parentesis():
 
     
 # Pruebas añadidas por el equipo
+
 def test_division_entre_cero():
     with pytest.raises(ErrorDeEvaluacion):
         interpretar("5 / 0")
