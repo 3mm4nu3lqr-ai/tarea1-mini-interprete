@@ -1,9 +1,9 @@
 # Análisis — Tarea 1
 
 **Integrantes:**
-1.
-2.
-3.
+1. Cruz Escobar Aarón
+2. Góngora Barroso Alfonso
+3. Quirino Roman Emmanuel
 
 **Fork:**
 **Rama:**
@@ -19,10 +19,10 @@
 
 | Componente | Qué recibe | Qué entrega | De qué es responsable |
 |---|---|---|---|
-| `lexer` | | | |
-| `parser` | | | |
-| `ast` | | | |
-| `evaluator` | | | |
+| `lexer` | Texto (str) | Lista de tokens | Partir el texto en tokens (número, operador, paréntesis), ignorando espacios y guardando la posición de cada uno |
+| `parser` | Lista de tokens | AST (árbol de sintaxis abstracta)| Agrupar los tokens según el orden de prioridad de la gramática, construir el árbol y lanzar `ErrorDeSintaxis` si la entrada no es válida |
+| `ast` | Nada | Nodos: Numero y OperacionBinaria | Definir los tipos de nodo del árbol (estructuras del árbol) |
+| `evaluator` | AST (árbol de sintaxis abstracta) | Un número | Recorrer el árbol, evaluar primero los dos lados de cada operación y aplicar el operador o lanzar `ErrorDeEvaluacion` |
 
 ### 1.2 ¿Qué recorrido sigue una expresión desde que se recibe como texto hasta que produce un resultado?
 
@@ -31,9 +31,17 @@
 | Etapa | Cómo se ve `(3 + 4) * 2` aquí |
 |---|---|
 | texto | `"(3 + 4) * 2"` |
-| tokens | |
-| AST | |
-| resultado | |
+| tokens | [PAR_IZQ, NUMERO(3), MAS, NUMERO(4), PAR_DER, POR, NUMERO(2)] |
+| AST | (ver dibujo abajo) |
+| resultado | 14 |
+
+```
+*
+|-- +
+|   |-- 3
+|   `-- 4
+`-- 2
+```
 
 > Para el renglón del AST, dibújenlo **primero ustedes** y después comprueben
 > con `python3 interprete.py --arbol "(3 + 4) * 2"`. Si su dibujo y el del
