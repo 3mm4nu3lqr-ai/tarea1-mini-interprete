@@ -13,17 +13,25 @@ def test_parentesis_sin_cerrar():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("(3 + 4")
 
+        
+def test_parentesis_sin_abrir():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("3 + 4)")
+
+
+def test_operadores_seguidos():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("3 + * 4")
+
+        
+def test_parentesis_vacios():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("()")
+        
 
 def test_caracter_no_reconocido():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("3 $ 4")
-
-
-def test_caracter_invalido_posicion():
-    with pytest.raises(ErrorDeSintaxis) as msg:
-        interpretar("3 / - 4")
-
-    assert msg.value.posicion == 4
 
 
 def test_entrada_vacia_invalida():
@@ -46,8 +54,15 @@ def test_menos_unario_invalido():
         interpretar("-3")
 
 
-def test_caracter_invalido_posicion():
+def test_caracter_inesperado_indica_la_posicion():
     with pytest.raises(ErrorDeSintaxis) as msg:
         interpretar("3 / - 4")
 
     assert msg.value.posicion == 4
+
+
+def test_caracter_no_reconocido_indica_la_posicion():
+    with pytest.raises(ErrorDeSintaxis) as msg:
+        interpretar("3 $ 4")
+
+    assert msg.value.posicion == 2

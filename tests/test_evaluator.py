@@ -25,7 +25,7 @@ def test_precedencia_sin_parentesis():
     assert interpretar("3 + 4 * 2") == 11
 
 
-def test_precedencia_con_parentes():
+def test_precedencia_con_parentesis():
     assert interpretar("(3 + 4) * 2") == 14
 
     
