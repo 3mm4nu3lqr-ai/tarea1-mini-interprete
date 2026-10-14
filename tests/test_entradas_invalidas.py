@@ -37,3 +37,10 @@ def test_dos_numeros_sin_operador_invalido():
 def test_menos_unario_invalido():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("-3")
+
+
+def test_caracter_invalido_posicion():
+    with pytest.raises(ErrorDeSintaxis) as msg:
+        interpretar("3 / - 4")
+
+    assert msg.value.posicion == 4

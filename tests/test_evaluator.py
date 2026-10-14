@@ -49,3 +49,11 @@ def test_resta_con_resultado_negativo():
     
 def test_division_no_exacta():
     assert interpretar("10 / 4") == 2.5
+
+
+def test_ceros_a_la_izquierda():
+    assert interpretar("007") == 7
+
+
+def test_parentesis_redundantes():
+    assert interpretar("((3))") == 3
