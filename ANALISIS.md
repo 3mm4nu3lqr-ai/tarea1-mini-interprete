@@ -56,7 +56,19 @@
 
 | Prueba | Componente | Comportamiento que verifica | ¿Cuántos operadores usa? | ¿Normal, frontera o inválida? |
 |---|---|---|---|---|
-| | | | | |
+| `test_suma` | evaluator | Que `3 + 4` dé 7 | 1 | Normal |
+| `test_resta` | evaluator | Que `10 - 3` dé 7 | 1 | Normal |
+| `test_multiplicacion` | evaluator | Que `6 * 7` dé 42 | 1 | Normal |
+| `test_division` | evaluator | Que `10 / 2` dé 5 | 1 | Normal |
+| `test_precedencia_sin_parentesis` | evaluator | Que `3 + 4 * 2` dé 11, o sea que la multiplicación se calcule antes que la suma | 2 | Normal |
+| `test_precedencia_con_parentesis` | evaluator | Que `(3 + 4) * 2` dé 14, o sea que los paréntesis fuercen a calcular primero la suma | 2 | Normal |
+| `test_tokeniza_un_numero_solo` | lexer | Que `42` produzca un único token `NUMERO` con valor 42 en la posición 0 | 0 | Frontera (entrada mínima: un solo número) |
+| `test_tokeniza_una_suma` | lexer | Que `3+4` (sin espacios) produzca `NUMERO(3)` en la posición 0, `MAS` con valor `"+"` en la 1 y `NUMERO(4)` en la 2. | 1 | Normal |
+| `test_los_espacios_no_producen_tokens` | lexer | Que `"  3   +   4  "` (espacios al inicio, al final y de más en medio) produzca exactamente 3 tokens. | 1 | Frontera (espacios en cantidad y en los extremos) |
+| `test_tokeniza_parentesis` | lexer | Que `(3)` produzca los tipos `PAR_IZQ`, `NUMERO`, `PAR_DER`, en ese orden. | 0 | Normal |
+| `test_construye_el_arbol_de_una_suma` | parser | Que `3 + 4` produzca `OperacionBinaria('+', Numero(3), Numero(4))` | 1 | Normal |
+| `test_la_multiplicacion_se_agrupa_antes_que_la_suma` | parser | Que `3 + 4 * 2` produzca `OperacionBinaria('+', Numero(3), OperacionBinaria('*', Numero(4), Numero(2)))`, es decir `3 + (4 * 2)` | 2 | Normal |
+| `test_los_parentesis_cambian_la_agrupacion` | parser | Que `(3 + 4) * 2` produzca `OperacionBinaria('*', OperacionBinaria('+', Numero(3), Numero(4)), Numero(2))`, es decir `(3 + 4) * 2` | 2 | Normal |
 
 > Llenen la tabla **completa**, con las 13. Es tediosa a propósito: la única
 > forma de saber qué no está cubierto es caracterizar sistemáticamente lo que
