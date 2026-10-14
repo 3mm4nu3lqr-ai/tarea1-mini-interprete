@@ -29,6 +29,7 @@ def test_precedencia_con_parentes():
     assert interpretar("(3 + 4) * 2") == 14
 
     
+# Pruebas añadidas por el equipo
 def test_division_entre_cero():
     with pytest.raises(ErrorDeEvaluacion):
         interpretar("5 / 0")
@@ -48,3 +49,9 @@ def test_resta_con_resultado_negativo():
     
 def test_division_no_exacta():
     assert interpretar("10 / 4") == 2.5
+
+
+def test_menos_unario_invalida():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("-3")
+        

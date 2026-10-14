@@ -17,3 +17,13 @@ def test_parentesis_sin_cerrar():
 def test_caracter_no_reconocido():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("3 $ 4")
+
+
+def test_entrada_vacia_invalida():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("")
+
+
+def test_entrada_de_solo_espacios_invalida():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("   ")
