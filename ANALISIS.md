@@ -84,9 +84,8 @@
 - Faltan pruebas que revisen que un mensaje de error indique la posición dentro del texto
 - Nunca se prueba una resta con resultado negativo, como `3 - 5`
 - Ninguna prueba revisa divisiones no exactas como `10 / 4` por ejemplo
-- No hay pruebas que revisen cadenas vacías
 - Faltan pruebas que revisen operadores del mismo nivel de prioridad como `1 + 2 + 3`
-
+- Ninguna prueba verifica el dibujo del árbol, por ejemplo en `formatear_arbol`, que está en `cli.py`, se podría comprobar que `3 + 4 * 2` produzca las líneas `["+", "|-- 3", "`-- *", "    |-- 4", "    `-- 2"]`
 
 > Ésta es la pregunta importante de toda la tarea. Tómense su tiempo.
 
