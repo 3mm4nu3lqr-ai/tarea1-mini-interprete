@@ -27,3 +27,13 @@ def test_entrada_vacia_invalida():
 def test_entrada_de_solo_espacios_invalida():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("   ")
+
+
+def test_dos_numeros_sin_operador_invalido():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("3 4")
+
+        
+def test_menos_unario_invalido():
+    with pytest.raises(ErrorDeSintaxis):
+        interpretar("-3")

@@ -26,6 +26,8 @@ def test_los_parentesis_cambian_la_agrupacion():
         "*", OperacionBinaria("+", Numero(3), Numero(4)), Numero(2)
     )
 
+    
+# Prueba añadida por el equipo
 
 def test_resta_se_agrupa_a_la_izquierda():
     assert arbol_de("10 - 3 - 2") == OperacionBinaria("-", OperacionBinaria("-", Numero(10), Numero(3)), Numero(2))

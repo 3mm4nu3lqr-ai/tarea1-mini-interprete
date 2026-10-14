@@ -49,9 +49,3 @@ def test_resta_con_resultado_negativo():
     
 def test_division_no_exacta():
     assert interpretar("10 / 4") == 2.5
-
-
-def test_menos_unario_invalida():
-    with pytest.raises(ErrorDeSintaxis):
-        interpretar("-3")
-        
