@@ -104,7 +104,27 @@
 
 | Prueba (archivo::nombre) | Entrada | Esperado | Categoría | ¿Por qué esa categoría? |
 |---|---|---|---|---|
-| | | | | |
+| `test_evaluator::test_division_entre_cero` | `5 / 0` | `ErrorDeEvaluacion` | Frontera | El divisor `0` es el valor límite donde la división deja de estar definida |
+| `test_evaluator::test_division_se_asocia_a_la_izquierda` | `8 / 4 / 2` | `1` | Normal | Porque es una expresión común, verifica la asociatividad izquierda de la sección 7 |
+| `test_evaluator::test_resta_se_asocia_a_la_izquierda` | `10 - 3 - 2` | `5` | Normal | Porque es una expresión válida con dos operadores del mismo nivel |
+| `test_evaluator::test_resta_con_resultado_negativo` | `3 - 5` | `-2` | Frontera | La entrada no tiene signo, pero el resultado cruza el límite del cero |
+| `test_evaluator::test_division_no_exacta` | `10 / 4` | `2.5` | Normal | Porque es un uso típico de la división declarada en la sección 7 |
+| `test_evaluator::test_ceros_a_la_izquierda` | `007` | `7` | Frontera | Forma diferente de escribir un número (con ceros no cambia su valor), declarada en la sección 7 |
+| `test_evaluator::test_parentesis_redundantes` | `((3))` | `3` | Frontera | Porque es una doble anidación sin ninguna operación dentro |
+| `test_parser::test_resta_se_agrupa_a_la_izquierda` | `10 - 3 - 2` | Árbol `(10 - 3) - 2` | Normal | Porque es una entrada válida, se verifica la forma del árbol, no solo el número |
+| `test_cli::test_dibujo_del_arbol` | Árbol de `3 + 4 * 2` | Las 5 líneas del dibujo, con `+` en la raíz | Normal | Entrada común que verifica `formatear_arbol` |
+| `test_entradas_invalidas::test_operador_al_final` | `3 +` | `ErrorDeSintaxis` | Inválida | Falta el operando derecho |
+| `test_entradas_invalidas::test_parentesis_sin_cerrar` | `(3 + 4` | `ErrorDeSintaxis` | Inválida | Falta el `)` |
+| `test_entradas_invalidas::test_parentesis_sin_abrir` | `3 + 4)` | `ErrorDeSintaxis` | Inválida | Sobra un `)` |
+| `test_entradas_invalidas::test_operadores_seguidos` | `3 + * 4` | `ErrorDeSintaxis` | Inválida | Dos operadores sin número en medio |
+| `test_entradas_invalidas::test_parentesis_vacios` | `()` | `ErrorDeSintaxis` | Inválida | Paréntesis sin expresión dentro |
+| `test_entradas_invalidas::test_caracter_no_reconocido` | `3 $ 4` | `ErrorDeSintaxis` | Inválida | El `$` no pertenece al lenguaje |
+| `test_entradas_invalidas::test_entrada_vacia_invalida` | `""` | `ErrorDeSintaxis` | Inválida | No hay ninguna expresión que evaluar |
+| `test_entradas_invalidas::test_entrada_de_solo_espacios_invalidos` | `"   "` | `ErrorDeSintaxis` | Inválida | Los espacios se ignoran y no queda nada |
+| `test_entradas_invalidas::test_dos_numeros_sin_operador_invalido` | `3 4` | `ErrorDeSintaxis` | Inválida | Dos números seguidos sin operador entre ellos |
+| `test_entradas_invalidas::test_menos_unario_invalido` | `-3` | `ErrorDeSintaxis` | Inválida | La sección 7 dice que el menos unario no se soporta |
+| `test_entradas_invalidas::test_caracter_inesperado_indica_la_posicion` | `3 / - 4` | `ErrorDeSintaxis` con `posicion == 4` | Inválida | Operador donde se esperaba un número, además verifica la posición exigida por la sección 7 |
+| `test_entradas_invalidas::test_caracter_no_reconocido_indica_la_posicion` | `3 $ 4` | `ErrorDeSintaxis` con `posicion == 2` | Inválida | Caracter que es ajeno al lenguaje, verifica la posición del error |
 
 ---
 

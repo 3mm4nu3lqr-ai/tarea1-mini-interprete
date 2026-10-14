@@ -39,7 +39,7 @@ def test_entrada_vacia_invalida():
         interpretar("")
 
 
-def test_entrada_de_solo_espacios_invalida():
+def test_entrada_de_solo_espacios_invalidos():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("   ")
 
