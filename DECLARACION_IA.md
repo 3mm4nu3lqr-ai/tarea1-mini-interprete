@@ -2,7 +2,11 @@
 
 **Actividad:**
 **Integrantes:**
+1. Cruz Escobar Aarón
+2. Góngora Barroso Alfonso
+3. Quirino Roman Emmanuel
 **Fecha:**
+14-Octubre-2026
 
 > Esta declaración es obligatoria en toda tarea, práctica y en el proyecto final.
 > **No da ni quita puntos**: es un reporte adicional que se revisa aparte y se
@@ -14,7 +18,7 @@
 ## 0. ¿Se usó IA en esta actividad?
 
 - [ ] **No.** Firmen la última sección y terminen. Con eso queda completa.
-- [ ] **Sí.** Contesten los cinco puntos.
+- [X] **Sí.** Contesten los cinco puntos.
 
 ---
 
@@ -22,7 +26,7 @@
 
 | Herramienta | Versión o modelo, si lo saben |
 |---|---|
-| | |
+| Gemini | Gemini 3.6 Flash |
 
 > Cuenta también el autocompletado del editor (Copilot y similares). Si sólo
 > fue eso, basta con decirlo en un renglón y seguir al punto 4.
@@ -33,7 +37,7 @@
 
 | Para qué la usamos | En qué parte del entregable |
 |---|---|
-| | |
+| Revisar que pruebas no hemos considerado | |
 
 > Sean específicos. *"Para la tarea"* no dice nada.
 > *"Para generar las pruebas de `minimo_de_llaves`"* sí.
@@ -70,10 +74,12 @@ Textuales, tal como los escribieron. No los limpien ni los reescriban.
 
 Se les pidió intentarlo primero por su cuenta. Si lo hicieron así:
 
-| | |
+| ¿Qué encontró la herramienta que ustedes **no** habían notado? | ¿Qué **no** encontró, que en este curso sí consideramos un problema?  |
 |---|---|
-| ¿Qué encontró la herramienta que ustedes **no** habían notado? | |
-| ¿Qué **no** encontró, que en este curso sí consideramos un problema? | |
+| Probar el programa con exceso de parentesis | |
+| Probar el programa con operaciones seguidad | |
+| Probar el programa con parentesis vacíos | |
+| Probar que el programa regresaba el indice correcto donde se ubicaba el error | |
 
 > La segunda es la que más nos interesa. Una herramienta suele no señalar la
 > duplicación de código, porque el programa funciona igual. Ustedes ya saben
