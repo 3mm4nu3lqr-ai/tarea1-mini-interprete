@@ -87,6 +87,7 @@
 - No hay pruebas que revisen cadenas vacías
 - Faltan pruebas que revisen operadores del mismo nivel de prioridad como `1 + 2 + 3`
 
+
 > Ésta es la pregunta importante de toda la tarea. Tómense su tiempo.
 
 ---
