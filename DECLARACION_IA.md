@@ -37,7 +37,7 @@
 
 | Para qué la usamos | En qué parte del entregable |
 |---|---|
-| Revisar que pruebas no hemos considerado | ANALISIS |
+| Revisar que pruebas no hemos considerado | ANALISIS (test no probados) |
 
 > Sean específicos. *"Para la tarea"* no dice nada.
 > *"Para generar las pruebas de `minimo_de_llaves`"* sí.
@@ -65,7 +65,10 @@ Textuales, tal como los escribieron. No los limpien ni los reescriban.
 
 | Qué produjo la herramienta | ¿Aceptado, modificado o descartado? | Por qué | Dónde quedó (archivo / commit) |
 |---|---|---|---|
-| | | | |
+| test caracter invalido posicion | Aceptado | Queremos comprobar que los errores que salten manden a la posición correcta del error | test_evaluetor.py Agregando pruebas|
+| test exsceso de parentesis | Aceptado | Puesto que el programa debe de ignorar los parentesis excendentes | test_evaluator.py -> Añado pruebas |
+| test operaciones seguidas | Modificado | Queremos que el programa sea capaz de procesar una cadena de texto más grande que la propuesta | test_evaluator.py Añadiendo pruebas |
+| test operaciones con negativos | Descartado | el programa no debe de ser capaz de procesar los numeros negativos | | 
 
 > **"Lo descartamos" es una respuesta excelente**, si dicen por qué.
 > Una declaración donde todo se aceptó sin cambios es una declaración que
@@ -77,8 +80,8 @@ Se les pidió intentarlo primero por su cuenta. Si lo hicieron así:
 
 | ¿Qué encontró la herramienta que ustedes **no** habían notado? | ¿Qué **no** encontró, que en este curso sí consideramos un problema?  |
 |---|---|
-| Probar el programa con exceso de parentesis | |
-| Probar el programa con operaciones seguidad | |
+| Probar el programa con exceso de parentesis | test con cadenas vacías |
+| Probar el programa con operaciones seguidad | Pruebas con asociatividad |
 | Probar el programa con parentesis vacíos | |
 | Probar que el programa regresaba el indice correcto donde se ubicaba el error | |
 
@@ -90,6 +93,9 @@ Se les pidió intentarlo primero por su cuenta. Si lo hicieron así:
 
 ### 4.2 ¿Cómo verificaron que lo que incorporaron era correcto?
 
+Los test no fueron implementados por la IA, solo dio sugerencias textuales, estos se evaluaron conforme a su validez para los casos a evaluar
+y fueron implementados
+
 > Una prueba que escribieron, una ejecución, un contraste contra las notas de
 > clase o contra el enunciado. *"Lo revisamos"* no es una verificación.
 
@@ -98,6 +104,8 @@ Se les pidió intentarlo primero por su cuenta. Si lo hicieron así:
 ## 5. Reflexión
 
 ### 5.1 ¿Qué limitación concreta observaron **en esta actividad**?
+
+Los test se ven limitados a la imaginación del programador y su conocimiento sobre el lenguaje y el código
 
 > Concreta. No *"a veces se equivoca"*, sino *"propuso pruebas sólo para
 > m = 4 y nunca para órdenes impares, porque no conocía la definición del
