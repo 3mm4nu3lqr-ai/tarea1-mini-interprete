@@ -50,11 +50,8 @@ Textuales, tal como los escribieron. No los limpien ni los reescriban.
 
 ```
 (prompt 1)
-```
-(archivos test y clases principales) Me podrías decir que casos no hemos considerado?
-
-```
-(prompt 2)
+Me podrías decir que casos no hemos considerado?
+*"Se adjuntan archivos test y clases principales"*
 ```
 
 ---
@@ -65,10 +62,10 @@ Textuales, tal como los escribieron. No los limpien ni los reescriban.
 
 | Qué produjo la herramienta | ¿Aceptado, modificado o descartado? | Por qué | Dónde quedó (archivo / commit) |
 |---|---|---|---|
-| test caracter invalido posicion | Aceptado | Queremos comprobar que los errores que salten manden a la posición correcta del error | test_evaluetor.py Agregando pruebas|
-| test exsceso de parentesis | Aceptado | Puesto que el programa debe de ignorar los parentesis excendentes | test_evaluator.py -> Añado pruebas |
-| test operaciones seguidas | Modificado | Queremos que el programa sea capaz de procesar una cadena de texto más grande que la propuesta | test_evaluator.py Añadiendo pruebas |
-| test operaciones con negativos | Descartado | el programa no debe de ser capaz de procesar los numeros negativos | | 
+| test caracter invalido posicion | Aceptado | Queremos comprobar que los errores que salten manden a la posición correcta del error | `test_evaluator.py` Agregando pruebas|
+| test exsceso de parentesis | Aceptado | Puesto que el programa debe de ignorar los parentesis excendentes | `test_evaluator.py` Añado pruebas |
+| test operaciones seguidas | Modificado | Queremos que el programa sea capaz de procesar una cadena de texto más grande que la propuesta | `test_evaluator.py` Añadiendo pruebas |
+| test operaciones con negativos | Descartado | El programa no debe de ser capaz de procesar los numeros negativos | | 
 
 > **"Lo descartamos" es una respuesta excelente**, si dicen por qué.
 > Una declaración donde todo se aceptó sin cambios es una declaración que
@@ -80,7 +77,7 @@ Se les pidió intentarlo primero por su cuenta. Si lo hicieron así:
 
 | ¿Qué encontró la herramienta que ustedes **no** habían notado? | ¿Qué **no** encontró, que en este curso sí consideramos un problema?  |
 |---|---|
-| Probar el programa con exceso de parentesis | test con cadenas vacías |
+| Probar el programa con exceso de parentesis | Test con cadenas vacías |
 | Probar el programa con operaciones seguidad | Pruebas con asociatividad |
 | Probar el programa con parentesis vacíos | |
 | Probar que el programa regresaba el indice correcto donde se ubicaba el error | |
