@@ -37,7 +37,7 @@
 
 | Para qué la usamos | En qué parte del entregable |
 |---|---|
-| Revisar que pruebas no hemos considerado | |
+| Revisar que pruebas no hemos considerado | ANALISIS |
 
 > Sean específicos. *"Para la tarea"* no dice nada.
 > *"Para generar las pruebas de `minimo_de_llaves`"* sí.
@@ -51,6 +51,7 @@ Textuales, tal como los escribieron. No los limpien ni los reescriban.
 ```
 (prompt 1)
 ```
+(archivos test y clases principales) Me podrías decir que casos no hemos considerado?
 
 ```
 (prompt 2)
