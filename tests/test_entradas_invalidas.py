@@ -19,6 +19,13 @@ def test_caracter_no_reconocido():
         interpretar("3 $ 4")
 
 
+def test_caracter_invalido_posicion():
+    with pytest.raises(ErrorDeSintaxis) as msg:
+        interpretar("3 / - 4")
+
+    assert msg.value.posicion == 4
+
+
 def test_entrada_vacia_invalida():
     with pytest.raises(ErrorDeSintaxis):
         interpretar("")
