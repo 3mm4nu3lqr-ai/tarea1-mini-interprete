@@ -79,9 +79,14 @@
 
 - No hay pruebas que verifique que las divisiones entre 0 envíe `ErrorDeEvaluación`
 - No hay ninguna prueba con `pytest.raises(ErrorDeSintaxis)` como revisar paréntesis sin cerrar o abrir, entradas vacías, menos unario (`-3`)
-- Ninguna prueba revisa la asociatividad (los operadores de la misma precedencia se asocian a la izquierda) por ejemplo `10 - 3 + 2`, `8 * 4 / 2 `
-- No hay pruebas que verifiquen entradas inválidas y que lancen `ErroDeSintaxis` por ejemplo con caracteres no reconocidos como (`3 $ 4`, `3 & 4`)
+- Ninguna prueba revisa la asociatividad (los operadores de la misma precedencia se asocian a la izquierda) por ejemplo `10 + 3 - 2`, `8 / 4 / 2 `
+- No hay pruebas que verifiquen entradas inválidas y que lancen `ErrorDeSintaxis` por ejemplo con caracteres no reconocidos como `3 $ 4`, `3 & 4`
 - Faltan pruebas que revisen que un mensaje de error indique la posición dentro del texto
+- Nunca se prueba una resta con resultado negativo, como 3 - 5
+- Ninguna prueba revisa divisiones no exactas como 10/4 por ejemplo
+- No hay pruebas que revisen cadenas vacías
+- Faltan pruebas que revisen operadores del mismo nivel de prioridad como `1 + 2 + 3`
+
 
 > Ésta es la pregunta importante de toda la tarea. Tómense su tiempo.
 
