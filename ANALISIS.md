@@ -131,7 +131,7 @@
 ## 4. Los defectos
 
 ### 4.1 ¿Qué defecto reveló primero una prueba nueva?
-
+- Que había un error al evaluar operadores de la misma procedencia cuando estaban encadenados, que fue encontrado por con `test_resta_se_asocia_a_la_izquierda` y con `test_division_se_asocia_a_la_izquierda`. lo que pasaba es que se asociaban hacia la derecha cuando debía pasar lo contrario.
 ### 4.2 ¿Por qué el comportamiento observado era incorrecto?
 
 > No basta con "daba mal". Digan contra qué lo están comparando: qué regla,
