@@ -134,6 +134,7 @@
 - Que había un error al evaluar operadores de la misma procedencia cuando estaban encadenados, que fue encontrado por con `test_resta_se_asocia_a_la_izquierda` y con `test_division_se_asocia_a_la_izquierda`. lo que pasaba es que se asociaban hacia la derecha cuando debía pasar lo contrario.
 ### 4.2 ¿Por qué el comportamiento observado era incorrecto?
 - Porque en el README.md, en el apartado 7 que dice Semántica declarada, en la parte de asociatividad dice que los operadores de la misma precedencia se asocian **a la izquierda**, pero lo que hacia es que se asociaban a la derecha.
+Lo que hacia por ejemplo con `10 - 3 - 2`, se agrupaba como `10 - (3 - 2)` lo que daba 9, en lugar de hacer `(10 - 3) - 2` que da como resultado 5.
 
 > No basta con "daba mal". Digan contra qué lo están comparando: qué regla,
 > qué línea de la semántica declarada del README.
