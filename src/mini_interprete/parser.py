@@ -27,7 +27,16 @@ class Parser:
 
     def parsear(self):
         """Construye el AST de la lista de tokens."""
-        return self._expresion()
+        if not self.tokens:
+            raise ErrorDeSintaxis("La entrada esta vacia", 0)
+
+        arbol = self._expresion()
+
+        actual = self._actual()
+        if actual is not None:
+            raise ErrorDeSintaxis(f"Token inesperado {actual.valor!r}", actual.posicion)
+        
+        return arbol
 
     def _actual(self):
         """El token en la posicion actual, o None si ya no quedan."""
@@ -41,35 +50,44 @@ class Parser:
         self.pos += 1
         return token
 
+    def _coincidir(self, *tipos):
+        """Si el token actual es de algun tipo esperado, lo consume y lo devuelve, sino, devuelve None"""
+        actual = self._actual()
+        if actual and actual.tipo in tipos:
+            return self._avanzar()
+        return None
+
     def _expresion(self):
         izquierda = self._termino()
-        actual = self._actual()
-        if actual is not None and actual.tipo in OPERADORES_SUMA:
-            operador = self._avanzar()
-            derecha = self._expresion()
-            return OperacionBinaria(operador.valor, izquierda, derecha)
+        while operador := self._coincidir(*OPERADORES_SUMA):
+            derecha = self._termino()
+            izquierda = OperacionBinaria(operador.valor, izquierda, derecha)
         return izquierda
 
     def _termino(self):
         izquierda = self._factor()
-        actual = self._actual()
-        if actual is not None and actual.tipo in OPERADORES_PRODUCTO:
-            operador = self._avanzar()
-            derecha = self._termino()
-            return OperacionBinaria(operador.valor, izquierda, derecha)
+        while operador := self._coincidir(*OPERADORES_PRODUCTO):
+            derecha = self._factor()
+            izquierda = OperacionBinaria(operador.valor, izquierda, derecha)
         return izquierda
 
     def _factor(self):
-        token = self._avanzar()
+        actual = self._actual()
+        if actual is None:
+            pos = self.tokens[-1].posicion if self.tokens else 0
+            raise ErrorDeSintaxis("Falta un número o '('", pos)
 
-        if token.tipo == TipoToken.NUMERO:
+        if actual.tipo == TipoToken.NUMERO:
+            token = self._avanzar()
             return Numero(token.valor)
 
-        if token.tipo == TipoToken.PAR_IZQ:
+        if actual.tipo == TipoToken.PAR_IZQ:
+            self._avanzar()
             nodo = self._expresion()
-            cierre = self._avanzar()
-            if cierre.tipo != TipoToken.PAR_DER:
-                raise ErrorDeSintaxis("se esperaba ')'", cierre.posicion)
+            cierre = self._coincidir(TipoToken.PAR_DER)
+            if not cierre:
+                pos = self._actual().posicion if self._actual() else (self.tokens[-1].posicion if self.tokens else 0)
+                raise ErrorDeSintaxis("Se esperaba ')'", pos)
             return nodo
 
-        raise ErrorDeSintaxis(f"token inesperado {token.valor!r}", token.posicion)
+        raise ErrorDeSintaxis(f"Token inesperado {actual.valor!r}", actual.posicion)
