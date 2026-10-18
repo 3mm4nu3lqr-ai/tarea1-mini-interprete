@@ -142,7 +142,10 @@
 
 | Defecto | Entrada que lo revela | Daba | Debería dar | Commit rojo | Commit verde |
 |---|---|---|---|---|---|
-| | | | | | |
+| La asociatividad se hacía a la derecha en entradas con operadores de la misma precedencia | `"10 - 3 - 2"` | `"9"` (calculaba `"10 - (3 - 2)"`) | `"5"` (calculando `"(10 - 3) - 2"`) | `"a0fe95a"` Añado pruebas | `"9941fc5"` Corrijo parser.py: ahora agrupa a la izquierda con la función coincidir y evalúa sintaxis incompleta |
+| Los caracteres no reconocidos eran ignorados | `"3 $ 4"` | El `"$"` se ignoraba y solo se tokenizaba el `"3"` y `"4"` | Un mensaje `"ErrorDeSintaxis("Caracter no identificado '$'", 2")"` | `"a0fe95a"` Añado pruebas | `"9941fc5"` Corrijo parser.py: ahora agrupa a la izquierda con la función coincidir y evalúa sintaxis incompleta |
+| Los valores sobrantes eran ignorados | `"3 4"` | `"3"` (pues solo leía el 3 e ignoraba el resto) | Un mensaje `"ErrorDeSintaxis("Token inesperado '4'", 2")"` | `"6f888da"` Añado pruebas | `"9941fc5"` Corrijo parser.py: ahora agrupa a la izquierda con la función coincidir y evalúa sintaxis incompleta |
+| Se lanzaban errores nativos de Python en lugar hacían falta tokens | `"(3 + 4"` | Un error nativo de Python | Un mensaje `"ErrorDeSintaxis"` con la posición del error exacto | `"a0fe95a"` Añado pruebas | `"9941fc5"` Corrijo parser.py: ahora agrupa a la izquierda con la función coincidir y evalúa sintaxis incompleta |
 
 ### 4.4 ¿Cómo saben que la corrección es general y no sólo hace pasar ese ejemplo?
 
