@@ -148,6 +148,10 @@
 | Se lanzaban errores nativos de Python en lugar hacían falta tokens | `"(3 + 4"` | Un error nativo de Python | Un mensaje `"ErrorDeSintaxis"` con la posición del error exacto | `"a0fe95a"` Añado pruebas | `"9941fc5"` Corrijo parser.py: ahora agrupa a la izquierda con la función coincidir y evalúa sintaxis incompleta |
 
 ### 4.4 ¿Cómo saben que la corrección es general y no sólo hace pasar ese ejemplo?
+- Estas correcciones son generales porque para empezar no se pusieron condiciones para casos específicos como poner un if para que cada prueba pudiera pasar, lo que se hizo fue cambiar la lógica de `parser.py` y `lexer.py`.
+En `parser.py` se cambió la recursión por un ciclo `while`, esto garantiza que para cualquier entrada con varias operaciones de la misma precedencia encadenadas, la asociatividad se hará de izquierda a derecha. Además se agregaron verificaciones para los casos de entradas en donde haya elementos de más.
+En `lexer.py` se cambió el salto que se hacía al encontrar caracteres no permitidos para que ahora se lance un `ErrorDeSintaxis` que marca el caracter y su posición exacta.
+Con estos cambios se aseguró que al momento de correr `pytest` todas las pruebas pasaran y garantizando que cualquier prueba futura tambien lo haga.
 
 ---
 
