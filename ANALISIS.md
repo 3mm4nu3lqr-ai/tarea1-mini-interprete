@@ -158,6 +158,10 @@ Con estos cambios se aseguró que al momento de correr `pytest` todas las prueba
 ## 5. Diseño
 
 ### 5.1 ¿Qué duplicación o señal de mal diseño encontraron?
+Durante la revisión tuvimos las siguientes observaciones:
+- Duplicación de código en `parser.py`: pues en las funciones `_expresion()` y `_termino()` se repetía casi el mismo código para verificar si el token actual era válido o no, para después consumirlo (la única diferencia que había era el tipo de operador que evaluaba), lo que hacía que el código fuera repetitivo.
+- Juntar responsabilidades en `evaluator.py`: la función evaluar hacia dos cosas a la vez, que era recorrer la estructura del AST y ejecutar las operaciones aritméticas con varios `if` anidados, por lo que no había una separación para estas dos acciones.
+- Ocultamiento de errores en `lexer.py`: al verificar si el caracter era válido, y éste no lo era, lo se hacía era simplemente ignorarlo, lo que podría generar conflictos más adelante.
 
 > Al menos dos. Usen el vocabulario de clase: duplicación, rigidez,
 > acoplamiento alto, condicionales repetidos, amplificación del cambio.
