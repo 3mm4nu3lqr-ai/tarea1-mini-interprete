@@ -131,10 +131,9 @@
 ## 4. Los defectos
 
 ### 4.1 ¿Qué defecto reveló primero una prueba nueva?
-- El error que reveló fue que la asociatividad de operadores de la misma precedencia se realizaba hacia la derecha, en lugar de a la izquierda como lo dice la sección 7 de `README.md`, por ejemplo con `"10 - 3 - 2`, donde el programa devolvía `"9"`, cuando debía devolver `"5"`. Y revisando más a detalle las pruebas, se encontró que adempas se estaban rompiendo otras reglas, como el recahzar caracteres no permitidos o el como manejar tokens sobrantes al final de una entrada.
+- El error que reveló fue que la asociatividad de operadores de la misma precedencia se realizaba hacia la derecha, por ejemplo con `"10 - 3 - 2`, donde el programa devolvía `"9"`, cuando debía devolver `"5"`. Y revisando más a detalle las pruebas, se encontró que además se estaban rompiendo otras reglas, como el recahzar caracteres no permitidos o el como manejar tokens sobrantes al final de una entrada.
 ### 4.2 ¿Por qué el comportamiento observado era incorrecto?
-- Porque en el README.md, en el apartado 7 que dice Semántica declarada, en la parte de asociatividad dice que los operadores de la misma precedencia se asocian **a la izquierda**, pero lo que hacia es que se asociaban a la derecha.
-Lo que hacia por ejemplo con `10 - 3 - 2`, se agrupaba como `10 - (3 - 2)` lo que daba 9, en lugar de hacer `(10 - 3) - 2` que da como resultado 5.
+- EL resultado de la prueba `"10 - 3 - 2"` no puede ser `"9"`, pues rompe con la regla establecida en la sección 7 del `"README.md"` que establece que `"los operadores de la misma precedencia se asocian a la izquierda"`. Lo que se hacía es que la operación se agrupaba a la derecha como `"10 - (3 - 2) = 9"`, cuando cumpliendo con la regla se debía agrupar como `"(10 - 3) - 2 = 5"`. Además las pruebas de entradas inválidas violaba la regla de Entrada inválida que dice `"debe rechazarse con ErrorDeSintaxis, nunca con un error de Python"` y la regla de Mensajes de error que dice `"deben indicar la posición dentro del texto"`.
 
 > No basta con "daba mal". Digan contra qué lo están comparando: qué regla,
 > qué línea de la semántica declarada del README.
