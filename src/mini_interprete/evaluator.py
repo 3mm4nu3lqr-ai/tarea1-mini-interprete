@@ -4,10 +4,6 @@ Recorre el arbol de abajo hacia arriba: para evaluar una operacion hay que
 evaluar primero sus dos lados.
 """
 
-from .ast import Numero, OperacionBinaria
-from .errores import ErrorDeEvaluacion
-
-
 from .ast import Nodo, Numero, OperacionBinaria
 from .errores import ErrorDeEvaluacion
 
@@ -21,11 +17,10 @@ def _calcular_binaria(op: str, izq, der):
         return izq * der
     if op == "/":
         if der == 0:
-            raise ErrorDeEvaluacion("Division por cero")
-        resultado = izq / der
-        return int(resultado) if resultado.is_integer() else resultado
+            raise ErrorDeEvaluacion("division entre cero")
+        return izq / der
 
-    raise ErrorDeEvaluacion(f"Operador no soportado {op!r}")
+    raise ErrorDeEvaluacion("operador desconocido")
 
 
 def evaluar(nodo: Nodo):
@@ -38,4 +33,4 @@ def evaluar(nodo: Nodo):
         der = evaluar(nodo.derecha)
         return _calcular_binaria(nodo.operador, izq, der)
 
-    raise ErrorDeEvaluacion(f"Nodo AST no soportado: {type(nodo).__name__}")
+    raise ErrorDeEvaluacion("nodo desconocido")
