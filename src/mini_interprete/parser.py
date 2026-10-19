@@ -57,20 +57,19 @@ class Parser:
             return self._avanzar()
         return None
 
-    def _expresion(self):
-        izquierda = self._termino()
-        while operador := self._coincidir(*OPERADORES_SUMA):
-            derecha = self._termino()
+    def _auxiliar(self, subregla, operadores):
+        izquierda = subregla()
+        while operador := self._coincidir(*operadores):
+            derecha = subregla()
             izquierda = OperacionBinaria(operador.valor, izquierda, derecha)
         return izquierda
+
+    def _expresion(self):
+        return self._auxiliar(self._termino, OPERADORES_SUMA)
 
     def _termino(self):
-        izquierda = self._factor()
-        while operador := self._coincidir(*OPERADORES_PRODUCTO):
-            derecha = self._factor()
-            izquierda = OperacionBinaria(operador.valor, izquierda, derecha)
-        return izquierda
-
+        return self._auxiliar(self._factor, OPERADORES_PRODUCTO)
+        
     def _factor(self):
         actual = self._actual()
         if actual is None:
