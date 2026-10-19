@@ -79,7 +79,7 @@ tarea1-pruebas-refactorizacion
 
 ### 2.2 ¿Qué comportamientos **no** estaban probados?
 
-- No hay pruebas que verifique que las divisiones entre 0 envíe `ErrorDeEvaluación`
+- No hay pruebas que verifiquen que las divisiones entre 0 envíe `ErrorDeEvaluación`
 - No hay ninguna prueba con `pytest.raises(ErrorDeSintaxis)` como revisar paréntesis sin cerrar o abrir, entradas vacías, menos unario (`-3`), dos números sin operador (`"3 4"`)
 - Ninguna prueba revisa la asociatividad (los operadores de la misma precedencia se asocian a la izquierda) por ejemplo `8 / 4 / 2 `, `10 - 3 - 2`
 - No hay pruebas que verifiquen entradas inválidas y que lancen `ErrorDeSintaxis` por ejemplo con caracteres no reconocidos como `3 $ 4`, `3 & 4`
@@ -133,9 +133,9 @@ tarea1-pruebas-refactorizacion
 ## 4. Los defectos
 
 ### 4.1 ¿Qué defecto reveló primero una prueba nueva?
-- El error que reveló fue que la asociatividad de operadores de la misma precedencia se realizaba hacia la derecha, por ejemplo con `"10 - 3 - 2`, donde el programa devolvía `"9"`, cuando debía devolver `"5"`. Y revisando más a detalle las pruebas, se encontró que además se estaban rompiendo otras reglas, como el recahzar caracteres no permitidos o el como manejar tokens sobrantes al final de una entrada.
+- El error que reveló fue que la asociatividad de operadores de la misma precedencia se realizaba hacia la derecha, por ejemplo con `"10 - 3 - 2`, donde el programa devolvía `"9"`, cuando debía devolver `"5"`. Y revisando más a detalle las pruebas, se encontró que además se estaban rompiendo otras reglas, como el rechazar caracteres no permitidos o el cómo manejar tokens sobrantes al final de una entrada.
 ### 4.2 ¿Por qué el comportamiento observado era incorrecto?
-- EL resultado de la prueba `"10 - 3 - 2"` no puede ser `"9"`, pues rompe con la regla establecida en la sección 7 del `"README.md"` que establece que `"los operadores de la misma precedencia se asocian a la izquierda"`. Lo que se hacía es que la operación se agrupaba a la derecha como `"10 - (3 - 2) = 9"`, cuando cumpliendo con la regla se debía agrupar como `"(10 - 3) - 2 = 5"`. Además las pruebas de entradas inválidas violaba la regla de Entrada inválida que dice `"debe rechazarse con ErrorDeSintaxis, nunca con un error de Python"` y la regla de Mensajes de error que dice `"deben indicar la posición dentro del texto"`.
+- El resultado de la prueba `"10 - 3 - 2"` no puede ser `"9"`, pues rompe con la regla establecida en la sección 7 del `"README.md"` que establece que `"los operadores de la misma precedencia se asocian a la izquierda"`. Lo que se hacía es que la operación se agrupaba a la derecha como `"10 - (3 - 2) = 9"`, cuando cumpliendo con la regla se debía agrupar como `"(10 - 3) - 2 = 5"`. Además las pruebas de entradas inválidas violaban la regla de Entrada inválida que dice `"debe rechazarse con ErrorDeSintaxis, nunca con un error de Python"` y la regla de Mensajes de error que dice `"deben indicar la posición dentro del texto"`.
 
 > No basta con "daba mal". Digan contra qué lo están comparando: qué regla,
 > qué línea de la semántica declarada del README.
@@ -153,7 +153,7 @@ tarea1-pruebas-refactorizacion
 - Estas correcciones son generales porque para empezar no se pusieron condiciones para casos específicos como poner un if para que cada prueba pudiera pasar, lo que se hizo fue cambiar la lógica de `parser.py` y `lexer.py`.
 En `parser.py` se cambió la recursión por un ciclo `while`, esto garantiza que para cualquier entrada con varias operaciones de la misma precedencia encadenadas, la asociatividad se hará de izquierda a derecha. Además se agregaron verificaciones para los casos de entradas en donde haya elementos de más.
 En `lexer.py` se cambió el salto que se hacía al encontrar caracteres no permitidos para que ahora se lance un `ErrorDeSintaxis` que marca el caracter y su posición exacta.
-Con estos cambios se aseguró que al momento de correr `pytest` todas las pruebas pasaran y garantizando que cualquier prueba futura tambien lo haga.
+Con estos cambios se aseguró que al momento de correr `pytest` todas las pruebas pasaran y garantizando que cualquier prueba futura también lo haga.
 
 ---
 
@@ -178,7 +178,7 @@ Se realizaron dos refactorizaciones en el código:
 > ¿Por qué el cambio es equivalente?
 
 ### 5.3 ¿Sería pertinente usar Factory Method, Adapter o ninguno?
-Consideramos que ninguno, pues el código al no ser tan grande y es directo, por lo que usar alguno de estos patrones podría complicar el codigo sin hacer alguna mejora o resolver un problema real, pero, si se quisiera usar alguno de estos patrones el sistema se necesitaría que el programa permita agregar nuevos tipos de tokens sin tener que modificar el codigo base (esto para Factory Method) o que se conecte a una librería externa que devuelva datos de manera distinta a como lo hace actualmente el programa (esto para Adapter).
+Consideramos que ninguno, pues el código al no ser tan grande y es directo, por lo que usar alguno de estos patrones podría complicar el código sin hacer alguna mejora o resolver un problema real, pero, si se quisiera usar alguno de estos patrones el sistema se necesitaría que el programa permita agregar nuevos tipos de tokens sin tener que modificar el codigo base (esto para Factory Method) o que se conecte a una librería externa que devuelva datos de manera distinta a como lo hace actualmente el programa (esto para Adapter).
 
 > Justifiquen. **"Ninguno" puede ser la respuesta correcta.** Si dicen que sí,
 > digan qué problema concreto resuelve y qué costo tiene. Si dicen que no,
