@@ -175,6 +175,7 @@ Se realizaron dos refactorizaciones en el código:
 > ¿Por qué el cambio es equivalente?
 
 ### 5.3 ¿Sería pertinente usar Factory Method, Adapter o ninguno?
+Consideramos que ninguno, pues el código al no ser tan grande y es directo, por lo que usar alguno de estos patrones podría complicar el codigo sin hacer alguna mejora o resolver un problema real, pero, si se quisiera usar alguno de estos patrones el sistema se necesitaría que el programa permita agregar nuevos tipos de tokens sin tener que modificar el codigo base (esto para Factory Method) o que se conecte a una librería externa que devuelva datos de manera distinta a como lo hace actualmente el programa.
 
 > Justifiquen. **"Ninguno" puede ser la respuesta correcta.** Si dicen que sí,
 > digan qué problema concreto resuelve y qué costo tiene. Si dicen que no,
