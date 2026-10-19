@@ -79,7 +79,7 @@ tarea1-pruebas-refactorizacion
 
 ### 2.2 ¿Qué comportamientos **no** estaban probados?
 
-- No hay pruebas que verifiquen que las divisiones entre 0 envíe `ErrorDeEvaluación`
+- No hay pruebas que verifiquen que las divisiones entre 0 envíe `ErrorDeEvaluacion`
 - No hay ninguna prueba con `pytest.raises(ErrorDeSintaxis)` como revisar paréntesis sin cerrar o abrir, entradas vacías, menos unario (`-3`), dos números sin operador (`"3 4"`)
 - Ninguna prueba revisa la asociatividad (los operadores de la misma precedencia se asocian a la izquierda) por ejemplo `8 / 4 / 2 `, `10 - 3 - 2`
 - No hay pruebas que verifiquen entradas inválidas y que lancen `ErrorDeSintaxis` por ejemplo con caracteres no reconocidos como `3 $ 4`, `3 & 4`
