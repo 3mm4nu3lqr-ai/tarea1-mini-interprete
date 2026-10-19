@@ -6,7 +6,9 @@
 3. Quirino Roman Emmanuel
 
 **Fork:**
+https://github.com/3mm4nu3lqr-ai/tarea1-mini-interprete
 **Rama:**
+tarea1-mini-interprete
 
 > Contesten en este archivo. Respuestas breves y concretas: se califica que
 > hayan entendido, no la extensión.

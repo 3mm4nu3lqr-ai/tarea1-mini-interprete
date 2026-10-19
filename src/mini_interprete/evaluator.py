@@ -20,7 +20,7 @@ def _calcular_binaria(op: str, izq, der):
             raise ErrorDeEvaluacion("division entre cero")
         return izq / der
 
-    raise ErrorDeEvaluacion(f"operador desconocido: {operador!r}")
+    raise ErrorDeEvaluacion(f"op desconocido: {operador!r}")
 
 
 def evaluar(nodo: Nodo):

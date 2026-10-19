@@ -110,6 +110,9 @@ Los test se ven limitados a la imaginación del programador y su conocimiento so
 
 ### 5.2 ¿Qué harían distinto la próxima vez?
 
+Daríamos junto con el código la sección 7 del README, para que las sugerencias respeten la semántica propuesta y no proponga casos que contradicen o choquen 
+con lo que queremos
+
 ---
 
 ## Firma
@@ -119,4 +122,6 @@ Los test se ven limitados a la imaginación del programador y su conocimiento so
 
 | Nombre | Número de cuenta |
 |---|---|
-| | |
+| Cruz Escobar Aarón | 323306287 |
+| Góngora Barroso Alfonso | 323273888 |
+|  Quirino Roman Emmanuel | |
