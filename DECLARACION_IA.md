@@ -124,4 +124,4 @@ con lo que queremos
 |---|---|
 | Cruz Escobar Aarón | 323306287 |
 | Góngora Barroso Alfonso | 323273888 |
-|  Quirino Roman Emmanuel | |
+|  Quirino Roman Emmanuel | 323030173 |
