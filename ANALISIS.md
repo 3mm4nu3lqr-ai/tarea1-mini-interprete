@@ -171,14 +171,14 @@ Durante la revisión tuvimos las siguientes observaciones:
 ### 5.2 ¿Qué refactorización realizaron, y por qué conserva el comportamiento?
 Se realizaron dos refactorizaciones en el código:
 - En `parser.py` se extrae la función `_coincidir()`: se encapsuló la comprobación y el avance del token en esa función (evitando así tener que repetir el  mismo código dos veces) y sigue conservando el mismo comportamiento porque se hacen las mismas verificaciones en el mismos orden y se avanza en la posición del texto de igual manera.
-- En `parser.py` se factorizo el comportamiento de los métodos termino y expresion
+- En `parser.py` se factorizó el comportamiento de los métodos termino y expresion
 - En `evaluator.py` se extrae la función `_calcular_binaria()`: se movieron las operaciones aritméticas a esa función y conserva el mismo comportamiento porque el árbol se recorre en el mismo orden, los resultados se calculan igual y se lanzan los mismos errores (como cuando se divide entre cero).
  
 > "Las pruebas siguen pasando" es parte de la respuesta, pero no toda.
 > ¿Por qué el cambio es equivalente?
 
 ### 5.3 ¿Sería pertinente usar Factory Method, Adapter o ninguno?
-Consideramos que ninguno, pues el código al no ser tan grande y es directo, por lo que usar alguno de estos patrones podría complicar el código sin hacer alguna mejora o resolver un problema real, pero, si se quisiera usar alguno de estos patrones el sistema se necesitaría que el programa permita agregar nuevos tipos de tokens sin tener que modificar el codigo base (esto para Factory Method) o que se conecte a una librería externa que devuelva datos de manera distinta a como lo hace actualmente el programa (esto para Adapter).
+Consideramos que ninguno, pues el código no es tan grande y es directo, por lo que usar alguno de estos patrones podría complicar el código sin hacer alguna mejora o resolver un problema real, pero, si se quisiera usar alguno de estos patrones el sistema se necesitaría que el programa permita agregar nuevos tipos de tokens sin tener que modificar el codigo base (esto para Factory Method) o que se conecte a una librería externa que devuelva datos de manera distinta a como lo hace actualmente el programa (esto para Adapter).
 
 > Justifiquen. **"Ninguno" puede ser la respuesta correcta.** Si dicen que sí,
 > digan qué problema concreto resuelve y qué costo tiene. Si dicen que no,
