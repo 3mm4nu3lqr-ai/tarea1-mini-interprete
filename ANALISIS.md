@@ -182,6 +182,11 @@ Consideramos que ninguno, pues el código al no ser tan grande y es directo, por
 > digan qué tendría que cambiar en el sistema para que empezara a convenir.
 
 ### 5.4 ¿Qué parte del sistema sería más difícil de modificar si se agregara un operador nuevo?
+Para agregar un operador nuevo se tendrían que modificar 3 archivos:
+- `lexer.py` para definir un nuevo tipo de token y para que éste pueda ser reconocido.
+- `parser.py` para agregar el nuevo token en el orden de precedencia que le corresponde.
+- `evaluator.py` para agregar la operación en la función `_calcular_binaria()` y tener en cuenta sus restricciones.
+De estas modificaciones la más difícil de hacer sería la de `parser.py` pues se tiene que poner el nuevo operador en el lugar adecuado dentro del orden de precedencia para evitar que la asociatividad y el orden se vean afectadas y hagan mal los cálculos.
 
 > Por ejemplo `%`. ¿Cuántos archivos hay que tocar? ¿Por qué?
 
