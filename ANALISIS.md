@@ -8,7 +8,7 @@
 **Fork:**
 https://github.com/3mm4nu3lqr-ai/tarea1-mini-interprete
 **Rama:**
-tarea1-mini-interprete
+tarea1-pruebas-refactorizacion
 
 > Contesten en este archivo. Respuestas breves y concretas: se califica que
 > hayan entendido, no la extensión.
@@ -171,6 +171,7 @@ Durante la revisión tuvimos las siguientes observaciones:
 ### 5.2 ¿Qué refactorización realizaron, y por qué conserva el comportamiento?
 Se realizaron dos refactorizaciones en el código:
 - En `parser.py` se extrae la función `_coincidir()`: se encapsuló la comprobación y el avance del token en esa función (evitando así tener que repetir el  mismo código dos veces) y sigue conservando el mismo comportamiento porque se hacen las mismas verificaciones en el mismos orden y se avanza en la posición del texto de igual manera.
+- En `parser.py` se facotrizo el comportamiento de los métodos termino y expresion
 - En `evaluator.py` se extrae la función `_calcular_binaria()`: se movieron las operaciones aritméticas a esa función y conserva el mismo comportamiento porque el árbol se recorre en el mismo orden, los resultados se calculan igual y se lanzan los mismos errores (como cuando se divide entre cero).
  
 > "Las pruebas siguen pasando" es parte de la respuesta, pero no toda.
